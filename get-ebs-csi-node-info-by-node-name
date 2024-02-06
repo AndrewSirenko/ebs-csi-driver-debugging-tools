@@ -1,0 +1,7 @@
+#!/bin/bash
+
+NODE_NAME=$1
+
+node_pod_name=$(kubectl get pod -n kube-system -l app=ebs-csi-node --field-selector spec.nodeName="$NODE_NAME" -o json | jq -r .items[0].metadata.name)
+kubectl get pod "$node_pod_name" -n kube-system -o yaml >> ebs-csi-nodepod.logs
+kubectl logs "$node_pod_name" -n kube-system --all-containers=true >> ebs-csi-nodepod.yaml
