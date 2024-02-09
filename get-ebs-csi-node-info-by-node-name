@@ -1,4 +1,5 @@
 #!/bin/bash
+# Collates a ebs-csi-node pod's logs and info based off of inputted node name
 
 NODE_NAME=$1
 
